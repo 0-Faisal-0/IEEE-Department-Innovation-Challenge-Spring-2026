@@ -6,7 +6,9 @@ exports.handler = async (event) => {
     if (!GEMINI_API_KEY) {
       return {
         statusCode: 500,
-        body: JSON.stringify({ reply: "Missing GEMINI_API_KEY in Netlify environment variables." })
+        body: JSON.stringify({
+          reply: "Missing GEMINI_API_KEY in Netlify environment variables."
+        })
       };
     }
 
@@ -14,23 +16,40 @@ exports.handler = async (event) => {
 You are the official AI assistant for IEEE Department Innovation Challenge Spring 2026.
 
 Event Details:
+- Event Name: IEEE Department Innovation Challenge Spring 2026
 - Venue: Bahria University E8 Islamabad
 - Dates: May 19-20, 2026
 - Registration Fee: Rs. 100 per participant
-- Competitions: Programming Competition, UI/UX Challenge, Project Excellence League, FYP-II Competition
+- Competitions:
+  1. Programming Competition
+  2. UI/UX Challenge
+  3. Project Excellence League
+  4. FYP-II Competition
 
-Answer briefly and clearly.
+Answer briefly, clearly, and professionally.
+Support English and Urdu.
 
-User Question: ${message}
+User Question:
+${message}
 `;
 
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`,
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }]
+          contents: [
+            {
+              parts: [
+                {
+                  text: prompt
+                }
+              ]
+            }
+          ]
         })
       }
     );
@@ -40,7 +59,9 @@ User Question: ${message}
     if (!response.ok) {
       return {
         statusCode: 500,
-        body: JSON.stringify({ reply: "Gemini error: " + JSON.stringify(data) })
+        body: JSON.stringify({
+          reply: "Gemini error: " + JSON.stringify(data)
+        })
       };
     }
 
@@ -56,7 +77,9 @@ User Question: ${message}
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ reply: "Server error: " + error.message })
+      body: JSON.stringify({
+        reply: "Server error: " + error.message
+      })
     };
   }
 };
