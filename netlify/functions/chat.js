@@ -1,61 +1,86 @@
 exports.handler = async (event) => {
-  const { message } = JSON.parse(event.body);
+  try {
+    const { message } = JSON.parse(event.body);
 
-  const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+    const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
-  const prompt = `
+    const prompt = `
 You are the official AI assistant for the IEEE Department Innovation Challenge Spring 2026.
 
-Event Information:
+EVENT DETAILS:
+- Event Name: IEEE Department Innovation Challenge Spring 2026
 - Venue: Bahria University E8 Islamabad
-- Date: May 19-20, 2026
-- Registration Fee: Rs. 100
-- Competitions:
-  1. Programming Competition
-  2. UI/UX Challenge
-  3. Project Excellence League
-  4. FYP-II Competition
+- Dates: May 19-20, 2026
+- Registration Fee: Rs. 100 per participant
 
-Answer user questions professionally and briefly.
+COMPETITIONS:
+1. Programming Competition
+2. UI/UX Challenge
+3. Project Excellence League
+4. FYP-II Competition
 
-User Question:
+GUIDELINES:
+- Answer clearly and professionally
+- Keep answers short and helpful
+- Only answer event-related questions
+- If question is unrelated, politely redirect to the event
+
+USER QUESTION:
 ${message}
 `;
 
-  try {
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${AIzaSyC6nD0AUTpXsoSISuloh4OLIa1FwCotPgQ}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           contents: [
             {
-              parts: [{ text: prompt }],
-            },
-          ],
-        }),
+              parts: [
+                {
+                  text: prompt
+                }
+              ]
+            }
+          ]
+        })
       }
     );
 
     const data = await response.json();
 
+    console.log(JSON.stringify(data));
+
     const reply =
-      data.candidates?.[0]?.content?.parts?.[0]?.text ||
+      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
       "Sorry, I could not answer that.";
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ reply }),
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+      body: JSON.stringify({
+        reply
+      })
     };
+
   } catch (error) {
+    console.log(error);
+
     return {
       statusCode: 500,
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
       body: JSON.stringify({
-        reply: "Server error.",
-      }),
+        reply: "Server error."
+      })
     };
   }
 };
