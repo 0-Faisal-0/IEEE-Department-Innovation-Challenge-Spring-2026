@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IEEE Innovation Challenge Assistant</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: Inter, Arial, sans-serif;
+    background: #f8fafc;
+    color: #0f172a;
+  }
+
+  .app {
+    max-width: 760px;
+    margin: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 18px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 22px;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 12px;
+    color: #2563eb;
+    background: #eff6ff;
+    padding: 6px 12px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 750;
+    letter-spacing: -0.04em;
+  }
+
+  .subtitle {
+    margin-top: 8px;
+    color: #64748b;
+    font-size: 15px;
+  }
+
+  .chat-card {
+    flex: 1;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 28px;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.06);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  #chat {
+    flex: 1;
+    padding: 22px;
+    overflow-y: auto;
+  }
+
+  .message {
+    max-width: 82%;
+    padding: 13px 15px;
+    border-radius: 18px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    font-size: 15px;
+  }
+
+  .bot {
+    background: #f1f5f9;
+    color: #0f172a;
+    border-top-left-radius: 6px;
+  }
+
+  .user {
+    background: #2563eb;
+    color: white;
+    margin-left: auto;
+    border-top-right-radius: 6px;
+  }
+
+  .chips {
+    display: flex;
+    gap: 8px;
+    padding: 0 18px 14px;
+    flex-wrap: wrap;
+  }
+
+  .chip {
+    border: 1px solid #dbeafe;
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .input-area {
+    border-top: 1px solid #e5e7eb;
+    padding: 14px;
+    display: flex;
+    gap: 10px;
+    background: #ffffff;
+  }
+
+  input {
+    flex: 1;
+    border: 1px solid #e5e7eb;
+    outline: none;
+    padding: 14px 16px;
+    border-radius: 999px;
+    font-size: 15px;
+    background: #f8fafc;
+  }
+
+  input:focus {
+    border-color: #2563eb;
+    background: white;
+  }
+
+  button.send {
+    border: none;
+    background: #2563eb;
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .typing {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 24px;
+    }
+
+    .app {
+      padding: 18px 12px;
+    }
+
+    .chat-card {
+      border-radius: 22px;
+    }
+  }
+</style>
+</head>
+
+<body>
+<div class="app">
+
+  <div class="header">
+    <div class="badge">Spring 2026 Event Assistant</div>
+    <h1>IEEE Department Innovation Challenge</h1>
+    <div class="subtitle">Ask anything about registration, competitions, venue, or contact.</div>
+  </div>
+
+  <div class="chat-card">
+    <div id="chat">
+      <div class="message bot">
+        Hi! I’m your AI assistant for the IEEE Department Innovation Challenge Spring 2026. How can I help?
+      </div>
+    </div>
+
+    <div class="chips">
+      <div class="chip" onclick="quickAsk('What is the registration fee?')">Fee</div>
+      <div class="chip" onclick="quickAsk('What competitions are available?')">Competitions</div>
+      <div class="chip" onclick="quickAsk('Where is the event?')">Venue</div>
+      <div class="chip" onclick="quickAsk('Who should I contact?')">Contact</div>
+    </div>
+
+    <div class="input-area">
+      <input id="msg" placeholder="Ask your question..." onkeydown="if(event.key==='Enter') send()" />
+      <button class="send" onclick="send()">➜</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const chat = document.getElementById("chat");
+const input = document.getElementById("msg");
+
+function addMessage(text, sender) {
+  const div = document.createElement("div");
+  div.className = "message " + sender;
+  div.innerText = text;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function quickAsk(text) {
+  input.value = text;
+  send();
+}
+
+async function send() {
+  const message = input.value.trim();
+  if (!message) return;
+
+  addMessage(message, "user");
+  input.value = "";
+
+  const typing = document.createElement("div");
+  typing.className = "typing";
+  typing.innerText = "Assistant is typing...";
+  chat.appendChild(typing);
+  chat.scrollTop = chat.scrollHeight;
+
+  try {
+    const response = await fetch("/.netlify/functions/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message })
+    });
+
+    const data = await response.json();
+    typing.remove();
+    addMessage(data.reply || "Please contact the organizer for confirmation.", "bot");
+
+  } catch (error) {
+    typing.remove();
+    addMessage("Something went wrong. Please try again.", "bot");
+  }
+}
+</script>
+
+</body>
+</html>
