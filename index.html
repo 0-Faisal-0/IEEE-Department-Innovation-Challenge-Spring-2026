@@ -2,590 +2,528 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>IEEE Workshop Chatbot</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+* {
+  box-sizing: border-box;
 }
 
-body{
-  font-family:'Poppins',sans-serif;
-  background:#f5f7fb;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-  color:#1d1d1f;
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: linear-gradient(135deg, #f8fbff, #eef4ff);
+  color: #0f172a;
+  min-height: 100vh;
 }
 
-.container{
-  width:100%;
-  max-width:900px;
+/* Header */
+.navbar {
+  height: 80px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 38px;
 }
 
-.hero{
-  text-align:center;
-  margin-bottom:30px;
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-.badge{
-  display:inline-block;
-  background:#e9efff;
-  color:#3f66ff;
-  padding:8px 18px;
-  border-radius:50px;
-  font-size:14px;
-  font-weight:600;
-  margin-bottom:20px;
+.logo-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #eaf1ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: #2563eb;
 }
 
-.hero h1{
-  font-size:52px;
-  line-height:1.1;
-  margin-bottom:14px;
-  color:#111827;
+.logo-text h3 {
+  margin: 0;
+  font-size: 20px;
 }
 
-.hero p{
-  color:#6b7280;
-  font-size:18px;
+.logo-text p {
+  margin: 3px 0 0;
+  color: #2563eb;
+  font-weight: 600;
 }
 
-.chat-card{
-  background:white;
-  border-radius:35px;
-  padding:35px;
-  box-shadow:
-  0 10px 40px rgba(0,0,0,0.06);
+.nav-links {
+  display: flex;
+  gap: 34px;
+  align-items: center;
 }
 
-.bot-area{
-  display:flex;
-  align-items:center;
-  gap:18px;
-  margin-bottom:30px;
+.nav-links a {
+  text-decoration: none;
+  color: #0f172a;
+  font-weight: 500;
 }
 
-.bot-avatar{
-  width:85px;
-  height:85px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#4f7cff,#7a5cff);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  position:relative;
-  overflow:hidden;
-  animation:float 3s ease-in-out infinite;
+.chat-btn {
+  background: #3b5bff;
+  color: white;
+  border: none;
+  padding: 13px 24px;
+  border-radius: 18px;
+  font-weight: 700;
+  font-size: 15px;
 }
 
-.bot-face{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:white;
-  position:relative;
+/* Main */
+.main {
+  text-align: center;
+  padding: 42px 20px 25px;
 }
 
-.bot-face::before,
-.bot-face::after{
-  content:'';
-  position:absolute;
-  width:6px;
-  height:6px;
-  background:#4f7cff;
-  border-radius:50%;
-  top:14px;
+.bot-wrap {
+  margin: 0 auto 18px;
+  width: 120px;
+  height: 120px;
+  position: relative;
 }
 
-.bot-face::before{
-  left:10px;
+.bot-glow {
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+  background: #eef4ff;
+  position: absolute;
+  inset: 0;
+  animation: pulseGlow 2.5s infinite ease-in-out;
 }
 
-.bot-face::after{
-  right:10px;
+.bot {
+  width: 90px;
+  height: 70px;
+  background: white;
+  border-radius: 28px;
+  position: absolute;
+  left: 15px;
+  top: 26px;
+  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.18);
+  animation: floatBot 3s infinite ease-in-out;
 }
 
-.bot-mouth{
-  position:absolute;
-  width:16px;
-  height:8px;
-  border-bottom:3px solid #4f7cff;
-  border-radius:0 0 10px 10px;
-  left:50%;
-  transform:translateX(-50%);
-  top:25px;
+.bot-face {
+  width: 60px;
+  height: 34px;
+  background: #1e3a8a;
+  border-radius: 18px;
+  position: absolute;
+  left: 15px;
+  top: 17px;
 }
 
-@keyframes float{
-  0%{transform:translateY(0px);}
-  50%{transform:translateY(-8px);}
-  100%{transform:translateY(0px);}
+.eye {
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 13px;
 }
 
-.bot-text h2{
-  font-size:30px;
-  margin-bottom:6px;
+.eye.left {
+  left: 16px;
 }
 
-.bot-text p{
-  color:#6b7280;
-  font-size:16px;
+.eye.right {
+  right: 16px;
 }
 
-.hidden{
-  display:none;
+.bot-antenna {
+  width: 8px;
+  height: 18px;
+  background: #60a5fa;
+  position: absolute;
+  top: -16px;
+  left: 41px;
+  border-radius: 10px;
 }
 
-.qa-card{
-  margin-top:25px;
-  background:#f8faff;
-  border-radius:28px;
-  padding:30px;
-  animation:fadeIn .4s ease;
+.bot-antenna::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  background: #3b82f6;
+  border-radius: 50%;
+  position: absolute;
+  top: -10px;
+  left: -3px;
 }
 
-.question-row,
-.answer-row{
-  display:flex;
-  gap:18px;
+.ring {
+  width: 92px;
+  height: 18px;
+  border: 3px solid #93c5fd;
+  border-radius: 50%;
+  position: absolute;
+  left: 14px;
+  top: 78px;
+  opacity: 0.8;
+  animation: rotateRing 4s linear infinite;
 }
 
-.question-row{
-  margin-bottom:25px;
+h1 {
+  margin: 10px 0 8px;
+  font-size: 44px;
+  letter-spacing: -1.5px;
 }
 
-.circle{
-  min-width:55px;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-weight:700;
-  color:white;
-  font-size:22px;
+h1 span {
+  color: #3b5bff;
 }
 
-.q-circle{
-  background:#4f7cff;
+.subtitle {
+  color: #475569;
+  font-size: 18px;
+  margin-bottom: 34px;
 }
 
-.a-circle{
-  background:#34c759;
+/* Q/A Card */
+.qa-card {
+  max-width: 780px;
+  min-height: 330px;
+  margin: 0 auto;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 22px;
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.08);
+  padding: 28px;
+  text-align: left;
 }
 
-.qa-content{
-  flex:1;
+.qa-row {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 10px 0 24px;
 }
 
-.question-text{
-  font-size:28px;
-  font-weight:600;
-  color:#111827;
+.qa-row.answer {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 26px;
 }
 
-.answer-text{
-  font-size:19px;
-  line-height:1.8;
-  color:#374151;
+.badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  flex-shrink: 0;
 }
 
-.divider{
-  height:1px;
-  background:#e5e7eb;
-  margin:25px 0;
+.q-badge {
+  background: #dbeafe;
+  color: #2563eb;
 }
 
-.typing{
-  display:flex;
-  gap:6px;
-  align-items:center;
-  margin-top:10px;
+.a-badge {
+  background: #16a34a;
 }
 
-.typing span{
-  width:8px;
-  height:8px;
-  background:#4f7cff;
-  border-radius:50%;
-  animation:bounce 1.4s infinite;
+.question-text {
+  font-size: 23px;
+  font-weight: 700;
+  margin-top: 7px;
 }
 
-.typing span:nth-child(2){
-  animation-delay:.2s;
+.answer-text {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-top: 6px;
 }
 
-.typing span:nth-child(3){
-  animation-delay:.4s;
+.placeholder {
+  color: #94a3b8;
 }
 
-@keyframes bounce{
-  0%,80%,100%{
-    transform:translateY(0);
-    opacity:.5;
+/* Input */
+.input-bar {
+  max-width: 1180px;
+  margin: 32px auto 12px;
+  padding: 18px;
+  background: white;
+  border-radius: 22px;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+  display: flex;
+  gap: 14px;
+}
+
+.input-wrap {
+  flex: 1;
+  border: 1px solid #dbe3ef;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+}
+
+.input-wrap span {
+  color: #94a3b8;
+  margin-right: 10px;
+}
+
+input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  padding: 18px 0;
+}
+
+.ask-button {
+  background: #3b5bff;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 0 34px;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ask-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(59, 91, 255, 0.28);
+}
+
+.footer {
+  text-align: center;
+  color: #64748b;
+  font-size: 13px;
+  padding-bottom: 18px;
+}
+
+/* Typing dots */
+.typing {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #3b5bff;
+  border-radius: 50%;
+  animation: bounce 1s infinite;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* Animations */
+@keyframes floatBot {
+  0%, 100% {
+    transform: translateY(0);
   }
-  40%{
-    transform:translateY(-8px);
-    opacity:1;
+  50% {
+    transform: translateY(-9px);
   }
 }
 
-.input-area{
-  margin-top:30px;
-  display:flex;
-  gap:15px;
-}
-
-.input-area input{
-  flex:1;
-  border:none;
-  outline:none;
-  background:#f3f6fb;
-  border-radius:18px;
-  padding:22px 24px;
-  font-size:18px;
-  font-family:'Poppins',sans-serif;
-}
-
-.send-btn{
-  width:72px;
-  border:none;
-  border-radius:20px;
-  background:linear-gradient(135deg,#4f7cff,#6f63ff);
-  color:white;
-  font-size:28px;
-  cursor:pointer;
-  transition:.3s;
-}
-
-.send-btn:hover{
-  transform:scale(1.05);
-}
-
-.quick-buttons{
-  display:flex;
-  gap:12px;
-  margin-top:22px;
-  flex-wrap:wrap;
-}
-
-.quick-buttons button{
-  border:none;
-  background:#eef3ff;
-  color:#4f7cff;
-  padding:12px 18px;
-  border-radius:50px;
-  cursor:pointer;
-  font-family:'Poppins',sans-serif;
-  transition:.3s;
-}
-
-.quick-buttons button:hover{
-  background:#4f7cff;
-  color:white;
-}
-
-@keyframes fadeIn{
-  from{
-    opacity:0;
-    transform:translateY(10px);
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.75;
   }
-  to{
-    opacity:1;
-    transform:translateY(0);
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
   }
 }
 
-@media(max-width:768px){
-
-  .hero h1{
-    font-size:36px;
+@keyframes rotateRing {
+  from {
+    transform: rotate(0deg);
   }
-
-  .question-text{
-    font-size:22px;
+  to {
+    transform: rotate(360deg);
   }
-
-  .answer-text{
-    font-size:17px;
-  }
-
-  .chat-card{
-    padding:24px;
-  }
-
 }
 
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  40% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .navbar {
+    padding: 0 18px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+
+  .qa-card {
+    min-height: 280px;
+    padding: 22px;
+  }
+
+  .question-text {
+    font-size: 19px;
+  }
+
+  .answer-text {
+    font-size: 16px;
+  }
+
+  .input-bar {
+    margin: 24px 14px 12px;
+    padding: 12px;
+  }
+
+  .ask-button {
+    padding: 0 22px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
-  <div class="hero">
-
-    <div class="badge">
-      Spring 2026 Event Assistant
+<header class="navbar">
+  <div class="logo-area">
+    <div class="logo-circle">IEEE</div>
+    <div class="logo-text">
+      <h3>IEEE Innovation Challenge</h3>
+      <p>Spring 2026</p>
     </div>
-
-    <h1>
-      IEEE Workshop Chatbot
-    </h1>
-
-    <p>
-      Ask anything about competitions, registration, venue, schedules, or event guidance.
-    </p>
-
   </div>
 
-  <div class="chat-card">
+  <nav class="nav-links">
+    <a href="#">About</a>
+    <a href="#">Events</a>
+    <a href="#">Contact</a>
+    <button class="chat-btn">Chat Now</button>
+  </nav>
+</header>
 
-    <div class="bot-area">
+<main class="main">
 
-      <div class="bot-avatar" id="botAvatar">
-
-        <div class="bot-face">
-          <div class="bot-mouth"></div>
-        </div>
-
+  <div class="bot-wrap">
+    <div class="bot-glow"></div>
+    <div class="bot">
+      <div class="bot-antenna"></div>
+      <div class="bot-face">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
       </div>
-
-      <div class="bot-text">
-        <h2>AI Event Assistant</h2>
-        <p>
-          Ask your question below.
-        </p>
-      </div>
-
     </div>
-
-    <section class="qa-card hidden" id="qaCard">
-
-      <div class="question-row">
-
-        <div class="circle q-circle">
-          Q
-        </div>
-
-        <div class="qa-content">
-
-          <div class="question-text" id="questionText">
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="answer-row">
-
-        <div class="circle a-circle">
-          A
-        </div>
-
-        <div class="qa-content">
-
-          <div class="answer-text" id="answerText">
-          </div>
-
-          <div class="typing hidden" id="typing">
-
-            <span></span>
-            <span></span>
-            <span></span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <div class="quick-buttons">
-
-      <button onclick="quickAsk('What competitions are available?')">
-        Competitions
-      </button>
-
-      <button onclick="quickAsk('What is the registration fee?')">
-        Fee
-      </button>
-
-      <button onclick="quickAsk('Where is the venue?')">
-        Venue
-      </button>
-
-      <button onclick="quickAsk('How can I prepare for the event?')">
-        Success Tips
-      </button>
-
-    </div>
-
-    <div class="input-area">
-
-      <input
-        type="text"
-        id="userInput"
-        placeholder="Ask your question..."
-      >
-
-      <button
-        class="send-btn"
-        onclick="sendQuestion()"
-      >
-        →
-      </button>
-
-    </div>
-
+    <div class="ring"></div>
   </div>
 
+  <h1>IEEE Workshop <span>Chatbot</span></h1>
+  <p class="subtitle">Ask me anything about the IEEE Innovation Challenge Spring 2026.</p>
+
+  <section class="qa-card">
+    <div class="qa-row">
+      <div class="badge q-badge">Q</div>
+      <div id="questionText" class="question-text placeholder">
+        Your question will appear here.
+      </div>
+    </div>
+
+    <div class="qa-row answer">
+      <div class="badge a-badge">A</div>
+      <div id="answerText" class="answer-text placeholder">
+        The answer will appear here.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="input-bar">
+  <div class="input-wrap">
+    <span>💬</span>
+    <input id="msg" placeholder="Type your question here..." onkeydown="if(event.key==='Enter') sendQuestion()" />
+  </div>
+  <button class="ask-button" onclick="sendQuestion()">Ask</button>
+</div>
+
+<div class="footer">
+  © 2026 IEEE Department Innovation Challenge. All rights reserved.
 </div>
 
 <script>
+const input = document.getElementById("msg");
+const questionText = document.getElementById("questionText");
+const answerText = document.getElementById("answerText");
 
-const input =
-document.getElementById("userInput");
+async function sendQuestion() {
+  const message = input.value.trim();
+  if (!message) return;
 
-const questionText =
-document.getElementById("questionText");
-
-const answerText =
-document.getElementById("answerText");
-
-const typing =
-document.getElementById("typing");
-
-const qaCard =
-document.getElementById("qaCard");
-
-const botAvatar =
-document.getElementById("botAvatar");
-
-input.addEventListener("keypress",function(e){
-
-  if(e.key==="Enter"){
-    sendQuestion();
-  }
-
-});
-
-function quickAsk(question){
-
-  input.value = question;
-  sendQuestion();
-
-}
-
-async function sendQuestion(){
-
-  const message =
-  input.value.trim();
-
-  if(!message) return;
-
-  qaCard.classList.remove("hidden");
+  questionText.classList.remove("placeholder");
+  answerText.classList.remove("placeholder");
 
   questionText.innerText = message;
-
-  answerText.innerText = "";
-
-  typing.classList.remove("hidden");
-
-  botAvatar.style.transform =
-  "scale(1.08)";
-
-  try{
-
-    const response =
-    await fetch("/api/chat",{
-
-      method:"POST",
-
-      headers:{
-        "Content-Type":"application/json"
-      },
-
-      body:JSON.stringify({
-        message
-      })
-
-    });
-
-    const data =
-    await response.json();
-
-    typing.classList.add("hidden");
-
-    typeAnswer(data.reply);
-
-  }
-
-  catch(error){
-
-    typing.classList.add("hidden");
-
-    answerText.innerText =
-    "Server connection error.";
-
-  }
+  answerText.innerHTML = `
+    <div class="typing">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  `;
 
   input.value = "";
 
-  setTimeout(()=>{
+  try {
+    const response = await fetch("/.netlify/functions/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message })
+    });
 
-    botAvatar.style.transform =
-    "scale(1)";
+    const data = await response.json();
 
-  },500);
-
-}
-
-function typeAnswer(text){
-
-  answerText.innerHTML = "";
-
-  let i = 0;
-
-  const speed = 12;
-
-  function typingEffect(){
-
-    if(i < text.length){
-
-      answerText.innerHTML +=
-      text.charAt(i);
-
-      i++;
-
-      setTimeout(
-        typingEffect,
-        speed
-      );
-
-    }
-
+    answerText.innerText = data.reply || "Sorry, I could not answer that.";
+  } catch (error) {
+    answerText.innerText = "Something went wrong. Please try again.";
   }
-
-  typingEffect();
-
 }
-
 </script>
 
 </body>
