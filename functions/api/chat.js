@@ -1,38 +1,41 @@
-import eventData from "../../event-data.txt";
+async function getEventData(request, env) {
 
-const sessions = {};
+  const url =
+    new URL("/event-data.txt", request.url);
+
+  const response =
+    await env.ASSETS.fetch(url);
+
+  return await response.text();
+
+}
 
 export async function onRequestPost(context) {
+
   try {
+
     const { request, env } = context;
-    const { message } = await request.json();
 
-    const ip =
-      request.headers.get("CF-Connecting-IP") ||
-      request.headers.get("X-Forwarded-For") ||
-      "unknown";
+    const { message } =
+      await request.json();
 
-    if (!sessions[ip]) {
-      sessions[ip] = {
-        unrelatedCount: 0
-      };
-    }
+    const eventData =
+      await getEventData(request, env);
 
     const systemPrompt = `
 You are the official AI assistant for IEEE Department Innovation Challenge Spring 2026.
 
-You must understand user questions naturally. Do NOT rely only on exact keywords.
-
 LANGUAGE SUPPORT:
-- Support English
-- Support Urdu
-- Support Roman Urdu
-- If the user asks in Urdu, answer in Urdu.
-- If the user asks in Roman Urdu, answer in Roman Urdu or simple Urdu-style English.
-- If the user asks in English, answer in English.
+- English
+- Urdu
+- Roman Urdu
+
+If the user asks in Urdu, answer in Urdu.
+If the user asks in Roman Urdu, answer in Roman Urdu.
+If the user asks in English, answer in English.
 
 MAIN PURPOSE:
-Help users with anything related to the event, including:
+Help users with:
 - event details
 - registration
 - competitions
@@ -45,133 +48,111 @@ Help users with anything related to the event, including:
 - certificates
 - awards
 - contact
-- how to prepare
-- how to succeed
-- which competition suits them
-- complex questions related to the event
+- preparation
+- success tips
+- technical guidance related to the event
+
+You may also answer general questions naturally.
 
 EVENT DATA:
-Use this information as your source of truth:
-
 ${eventData}
 
-UNRELATED QUESTION RULE:
-You may answer only ONE unrelated/general question per chat session.
-
-If the question is unrelated for the first time:
-Start your answer exactly with:
-"I can help you with anything event-related, including how to succeed in the event and detailed guidance about the event. But since you asked nicely, I’ll answer this one time."
-
-Then answer briefly.
-
-If the user asks unrelated questions again, reply exactly:
-"Sorry my friend, now I can answer only event-related questions in this chat session."
-
-If information is missing from the event data, say:
+If information is missing from event data, say:
 "Please contact the organizer for confirmation."
 
 RESPONSE STYLE:
-- Friendly
-- Clear
-- Brief
-- Student-friendly
-- Do not be robotic
-- Do not invent event details
+- Keep answers clean and concise.
+- Use short paragraphs.
+- Use bullet points only when helpful.
+- Avoid long essays.
+- Avoid unnecessary details.
+- Answer directly first, then add brief explanation if needed.
+- Keep tone friendly and student-friendly.
+- Use clean formatting.
+- Avoid excessive markdown symbols.
 `;
 
-    const classifierPrompt = `
-Decide if the user's question is related to IEEE Department Innovation Challenge Spring 2026.
+    const response =
+      await fetch(
+        "https://api.deepseek.com/chat/completions",
+        {
 
-Event-related includes:
-registration, fee, venue, date, schedule, competitions, certificates, awards, rules, eligibility, preparation, success tips, choosing a category, contact, event logistics, or anything reasonably connected to the event.
+          method: "POST",
 
-Question:
-${message}
+          headers: {
+            "Content-Type":
+              "application/json",
 
-Answer ONLY with:
-RELATED
-or
-UNRELATED
-`;
-
-    const classifyResponse = await fetch("https://api.deepseek.com/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${env.DEEPSEEK_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: "deepseek-chat",
-        messages: [
-          {
-            role: "system",
-            content: "You are a strict classifier. Reply only RELATED or UNRELATED."
+            "Authorization":
+              `Bearer ${env.DEEPSEEK_API_KEY}`
           },
-          {
-            role: "user",
-            content: classifierPrompt
-          }
-        ],
-        temperature: 0,
-        max_tokens: 5
-      })
-    });
 
-    const classifyData = await classifyResponse.json();
-    const classification =
-      classifyData?.choices?.[0]?.message?.content?.trim().toUpperCase() || "UNRELATED";
+          body: JSON.stringify({
 
-    if (classification === "UNRELATED") {
-      sessions[ip].unrelatedCount++;
+            model: "deepseek-chat",
 
-      if (sessions[ip].unrelatedCount > 1) {
-        return Response.json({
-          reply:
-            "Sorry my friend, I can answer only event-related questions in this chat session."
-        });
-      }
-    }
+            messages: [
 
-    const response = await fetch("https://api.deepseek.com/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${env.DEEPSEEK_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: "deepseek-chat",
-        messages: [
-          {
-            role: "system",
-            content: systemPrompt
-          },
-          {
-            role: "user",
-            content: message
-          }
-        ],
-        temperature: 0.3,
-        max_tokens: 500
-      })
-    });
+              {
+                role: "system",
+                content: systemPrompt
+              },
 
-    const data = await response.json();
+              {
+                role: "user",
+                content: message
+              }
+
+            ],
+
+            temperature: 0.3,
+
+            max_tokens: 500
+
+          })
+
+        }
+      );
+
+    const data =
+      await response.json();
 
     if (!response.ok) {
+
       return Response.json({
-        reply: "DeepSeek error: " + JSON.stringify(data)
-      }, { status: 500 });
+
+        reply:
+          "DeepSeek error: " +
+          JSON.stringify(data)
+
+      }, {
+        status: 500
+      });
+
     }
 
     const reply =
-      data?.choices?.[0]?.message?.content ||
-      "Sorry, I could not answer that.";
+      data?.choices?.[0]?.message?.content
+      || "Sorry, I could not answer that.";
 
-    return Response.json({ reply });
-
-  } catch (error) {
     return Response.json({
-      reply: "Server error: " + error.message
-    }, { status: 500 });
+      reply
+    });
+
   }
+
+  catch(error){
+
+    return Response.json({
+
+      reply:
+        "Server error: " +
+        error.message
+
+    }, {
+      status: 500
+    });
+
+  }
+
 }
