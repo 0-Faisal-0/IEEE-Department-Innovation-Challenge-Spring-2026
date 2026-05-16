@@ -2,528 +2,691 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>IEEE Workshop Chatbot</title>
 
 <style>
-* {
-  box-sizing: border-box;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-  margin: 0;
-  font-family: Inter, Arial, sans-serif;
-  background: linear-gradient(135deg, #f8fbff, #eef4ff);
-  color: #0f172a;
-  min-height: 100vh;
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:linear-gradient(135deg,#f7faff,#eef4ff);
+    min-height:100vh;
+    color:#0f172a;
+    overflow-x:hidden;
 }
 
-/* Header */
-.navbar {
-  height: 80px;
-  background: white;
-  border-bottom: 1px solid #e5e7eb;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 38px;
+/* NAVBAR */
+
+.navbar{
+    height:80px;
+    background:white;
+    border-bottom:1px solid #e5e7eb;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 40px;
 }
 
-.logo-area {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:14px;
 }
 
-.logo-circle {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: #eaf1ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  color: #2563eb;
+.logo-circle{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:#dbeafe;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    color:#2563eb;
 }
 
-.logo-text h3 {
-  margin: 0;
-  font-size: 20px;
+.logo-text h3{
+    font-size:20px;
 }
 
-.logo-text p {
-  margin: 3px 0 0;
-  color: #2563eb;
-  font-weight: 600;
+.logo-text p{
+    color:#2563eb;
+    margin-top:2px;
+    font-weight:600;
 }
 
-.nav-links {
-  display: flex;
-  gap: 34px;
-  align-items: center;
+.nav-links{
+    display:flex;
+    gap:35px;
+    align-items:center;
 }
 
-.nav-links a {
-  text-decoration: none;
-  color: #0f172a;
-  font-weight: 500;
+.nav-links a{
+    text-decoration:none;
+    color:#0f172a;
+    font-weight:500;
 }
 
-.chat-btn {
-  background: #3b5bff;
-  color: white;
-  border: none;
-  padding: 13px 24px;
-  border-radius: 18px;
-  font-weight: 700;
-  font-size: 15px;
+.chat-btn{
+    background:#3b5bff;
+    color:white;
+    border:none;
+    border-radius:16px;
+    padding:12px 24px;
+    font-weight:700;
+    cursor:pointer;
 }
 
-/* Main */
-.main {
-  text-align: center;
-  padding: 42px 20px 25px;
+/* MAIN */
+
+.main{
+    text-align:center;
+    padding:40px 20px 20px;
 }
 
-.bot-wrap {
-  margin: 0 auto 18px;
-  width: 120px;
-  height: 120px;
-  position: relative;
+/* BOT */
+
+.bot-wrap{
+    width:140px;
+    height:140px;
+    margin:0 auto 15px;
+    position:relative;
 }
 
-.bot-glow {
-  width: 115px;
-  height: 115px;
-  border-radius: 50%;
-  background: #eef4ff;
-  position: absolute;
-  inset: 0;
-  animation: pulseGlow 2.5s infinite ease-in-out;
+.bot-glow{
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    background:#dbeafe;
+    animation:pulseGlow 2.5s infinite ease-in-out;
 }
 
-.bot {
-  width: 90px;
-  height: 70px;
-  background: white;
-  border-radius: 28px;
-  position: absolute;
-  left: 15px;
-  top: 26px;
-  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.18);
-  animation: floatBot 3s infinite ease-in-out;
+.bot{
+    width:92px;
+    height:74px;
+    background:white;
+    border-radius:28px;
+    position:absolute;
+    left:24px;
+    top:30px;
+    box-shadow:0 18px 40px rgba(37,99,235,0.15);
+    animation:floatBot 3s infinite ease-in-out;
 }
 
-.bot-face {
-  width: 60px;
-  height: 34px;
-  background: #1e3a8a;
-  border-radius: 18px;
-  position: absolute;
-  left: 15px;
-  top: 17px;
+.bot-face{
+    width:60px;
+    height:35px;
+    background:#1e3a8a;
+    border-radius:18px;
+    position:absolute;
+    left:16px;
+    top:17px;
 }
 
-.eye {
-  width: 8px;
-  height: 8px;
-  background: white;
-  border-radius: 50%;
-  position: absolute;
-  top: 13px;
+.eye{
+    width:8px;
+    height:8px;
+    background:white;
+    border-radius:50%;
+    position:absolute;
+    top:12px;
 }
 
-.eye.left {
-  left: 16px;
+.eye.left{
+    left:16px;
 }
 
-.eye.right {
-  right: 16px;
+.eye.right{
+    right:16px;
 }
 
-.bot-antenna {
-  width: 8px;
-  height: 18px;
-  background: #60a5fa;
-  position: absolute;
-  top: -16px;
-  left: 41px;
-  border-radius: 10px;
+.mouth{
+    width:22px;
+    height:8px;
+    border-bottom:3px solid white;
+    border-radius:0 0 20px 20px;
+    position:absolute;
+    left:19px;
+    bottom:6px;
+    opacity:0;
+    transition:0.25s;
 }
 
-.bot-antenna::before {
-  content: "";
-  width: 14px;
-  height: 14px;
-  background: #3b82f6;
-  border-radius: 50%;
-  position: absolute;
-  top: -10px;
-  left: -3px;
+.bot-antenna{
+    width:8px;
+    height:18px;
+    background:#60a5fa;
+    position:absolute;
+    top:-16px;
+    left:42px;
+    border-radius:10px;
 }
 
-.ring {
-  width: 92px;
-  height: 18px;
-  border: 3px solid #93c5fd;
-  border-radius: 50%;
-  position: absolute;
-  left: 14px;
-  top: 78px;
-  opacity: 0.8;
-  animation: rotateRing 4s linear infinite;
+.bot-antenna::before{
+    content:"";
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:#3b82f6;
+    position:absolute;
+    top:-10px;
+    left:-3px;
 }
 
-h1 {
-  margin: 10px 0 8px;
-  font-size: 44px;
-  letter-spacing: -1.5px;
+.ring{
+    width:100px;
+    height:18px;
+    border:3px solid #93c5fd;
+    border-radius:50%;
+    position:absolute;
+    left:20px;
+    top:86px;
+    animation:rotateRing 4s linear infinite;
 }
 
-h1 span {
-  color: #3b5bff;
+/* BOT STATES */
+
+.bot-wrap.listening .bot{
+    animation:listenBot 0.7s infinite ease-in-out;
 }
 
-.subtitle {
-  color: #475569;
-  font-size: 18px;
-  margin-bottom: 34px;
+.bot-wrap.listening .eye{
+    animation:blink 1s infinite;
 }
 
-/* Q/A Card */
-.qa-card {
-  max-width: 780px;
-  min-height: 330px;
-  margin: 0 auto;
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 22px;
-  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.08);
-  padding: 28px;
-  text-align: left;
+.bot-wrap.thinking .bot{
+    animation:thinkingBot 0.5s infinite alternate ease-in-out;
 }
 
-.qa-row {
-  display: flex;
-  gap: 18px;
-  align-items: flex-start;
-  padding: 10px 0 24px;
+.bot-wrap.thinking .ring{
+    animation:rotateRing 0.8s linear infinite;
+    border-color:#3b5bff;
 }
 
-.qa-row.answer {
-  border-top: 1px solid #e5e7eb;
-  padding-top: 26px;
+.bot-wrap.answering .bot{
+    animation:answerPop 0.7s ease;
 }
 
-.badge {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 800;
-  flex-shrink: 0;
+.bot-wrap.answering .mouth{
+    opacity:1;
 }
 
-.q-badge {
-  background: #dbeafe;
-  color: #2563eb;
+.bot-wrap.answering .bot-glow{
+    background:#dcfce7;
 }
 
-.a-badge {
-  background: #16a34a;
+/* TITLES */
+
+h1{
+    font-size:52px;
+    margin-bottom:10px;
+    letter-spacing:-2px;
 }
 
-.question-text {
-  font-size: 23px;
-  font-weight: 700;
-  margin-top: 7px;
+h1 span{
+    color:#3b5bff;
 }
 
-.answer-text {
-  font-size: 18px;
-  line-height: 1.6;
-  margin-top: 6px;
+.subtitle{
+    color:#64748b;
+    font-size:19px;
+    margin-bottom:35px;
 }
 
-.placeholder {
-  color: #94a3b8;
+/* CARD */
+
+.qa-card{
+    width:100%;
+    max-width:800px;
+    margin:auto;
+    background:white;
+    border-radius:24px;
+    padding:30px;
+    border:1px solid #e5e7eb;
+    box-shadow:0 20px 60px rgba(15,23,42,0.06);
+    text-align:left;
+    min-height:300px;
 }
 
-/* Input */
-.input-bar {
-  max-width: 1180px;
-  margin: 32px auto 12px;
-  padding: 18px;
-  background: white;
-  border-radius: 22px;
-  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
-  display: flex;
-  gap: 14px;
+.qa-row{
+    display:flex;
+    gap:18px;
+    padding:12px 0 25px;
 }
 
-.input-wrap {
-  flex: 1;
-  border: 1px solid #dbe3ef;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  padding: 0 18px;
+.qa-row.answer{
+    border-top:1px solid #e5e7eb;
+    padding-top:25px;
 }
 
-.input-wrap span {
-  color: #94a3b8;
-  margin-right: 10px;
+.badge{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    flex-shrink:0;
 }
 
-input {
-  width: 100%;
-  border: none;
-  outline: none;
-  font-size: 17px;
-  padding: 18px 0;
+.q-badge{
+    background:#dbeafe;
+    color:#2563eb;
 }
 
-.ask-button {
-  background: #3b5bff;
-  color: white;
-  border: none;
-  border-radius: 16px;
-  padding: 0 34px;
-  font-size: 18px;
-  font-weight: 800;
-  cursor: pointer;
-  transition: 0.2s;
+.a-badge{
+    background:#16a34a;
+    color:white;
 }
 
-.ask-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 26px rgba(59, 91, 255, 0.28);
+.question-text{
+    font-size:24px;
+    font-weight:700;
 }
 
-.footer {
-  text-align: center;
-  color: #64748b;
-  font-size: 13px;
-  padding-bottom: 18px;
+.answer-text{
+    font-size:18px;
+    line-height:1.6;
 }
 
-/* Typing dots */
-.typing {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  margin-top: 14px;
+.placeholder{
+    color:#94a3b8;
 }
 
-.dot {
-  width: 8px;
-  height: 8px;
-  background: #3b5bff;
-  border-radius: 50%;
-  animation: bounce 1s infinite;
+/* INPUT */
+
+.input-bar{
+    max-width:1200px;
+    margin:28px auto 14px;
+    background:white;
+    border-radius:22px;
+    padding:16px;
+    display:flex;
+    gap:15px;
+    box-shadow:0 15px 40px rgba(15,23,42,0.07);
 }
 
-.dot:nth-child(2) {
-  animation-delay: 0.15s;
+.input-wrap{
+    flex:1;
+    border:1px solid #dbe3ef;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    padding:0 18px;
 }
 
-.dot:nth-child(3) {
-  animation-delay: 0.3s;
+.input-wrap span{
+    margin-right:10px;
+    color:#94a3b8;
 }
 
-/* Animations */
-@keyframes floatBot {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-9px);
-  }
+input{
+    width:100%;
+    border:none;
+    outline:none;
+    font-size:17px;
+    padding:18px 0;
 }
 
-@keyframes pulseGlow {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.75;
-  }
-  50% {
-    transform: scale(1.08);
-    opacity: 1;
-  }
+.ask-button{
+    background:#3b5bff;
+    color:white;
+    border:none;
+    border-radius:16px;
+    padding:0 34px;
+    font-size:18px;
+    font-weight:800;
+    cursor:pointer;
+    transition:0.2s;
 }
 
-@keyframes rotateRing {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ask-button:hover{
+    transform:translateY(-2px);
 }
 
-@keyframes bounce {
-  0%, 80%, 100% {
-    transform: translateY(0);
-    opacity: 0.35;
-  }
-  40% {
-    transform: translateY(-6px);
-    opacity: 1;
-  }
+/* TYPING DOTS */
+
+.typing{
+    display:flex;
+    gap:6px;
+    margin-top:12px;
 }
 
-/* Mobile */
-@media (max-width: 700px) {
-  .navbar {
-    padding: 0 18px;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  h1 {
-    font-size: 34px;
-  }
-
-  .subtitle {
-    font-size: 15px;
-  }
-
-  .qa-card {
-    min-height: 280px;
-    padding: 22px;
-  }
-
-  .question-text {
-    font-size: 19px;
-  }
-
-  .answer-text {
-    font-size: 16px;
-  }
-
-  .input-bar {
-    margin: 24px 14px 12px;
-    padding: 12px;
-  }
-
-  .ask-button {
-    padding: 0 22px;
-  }
+.dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#3b5bff;
+    animation:bounce 1s infinite;
 }
+
+.dot:nth-child(2){
+    animation-delay:0.15s;
+}
+
+.dot:nth-child(3){
+    animation-delay:0.3s;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    color:#64748b;
+    font-size:13px;
+    padding-bottom:18px;
+}
+
+/* ANIMATIONS */
+
+@keyframes floatBot{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+}
+
+@keyframes pulseGlow{
+    0%,100%{
+        transform:scale(1);
+        opacity:0.8;
+    }
+    50%{
+        transform:scale(1.08);
+        opacity:1;
+    }
+}
+
+@keyframes rotateRing{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+
+@keyframes bounce{
+    0%,80%,100%{
+        transform:translateY(0);
+        opacity:0.4;
+    }
+    40%{
+        transform:translateY(-6px);
+        opacity:1;
+    }
+}
+
+@keyframes listenBot{
+    0%,100%{
+        transform:translateY(0) rotate(0deg);
+    }
+    50%{
+        transform:translateY(-6px) rotate(2deg);
+    }
+}
+
+@keyframes thinkingBot{
+    from{
+        transform:translateY(0) scale(1);
+    }
+    to{
+        transform:translateY(-8px) scale(1.05);
+    }
+}
+
+@keyframes answerPop{
+    0%{
+        transform:scale(1);
+    }
+    40%{
+        transform:scale(1.12);
+    }
+    100%{
+        transform:scale(1);
+    }
+}
+
+@keyframes blink{
+    0%,90%,100%{
+        height:8px;
+    }
+    95%{
+        height:2px;
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+.nav-links{
+    display:none;
+}
+
+h1{
+    font-size:38px;
+}
+
+.qa-card{
+    padding:22px;
+}
+
+.question-text{
+    font-size:20px;
+}
+
+.answer-text{
+    font-size:16px;
+}
+
+.input-bar{
+    margin:20px 12px;
+}
+
+.ask-button{
+    padding:0 22px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
 <header class="navbar">
-  <div class="logo-area">
-    <div class="logo-circle">IEEE</div>
-    <div class="logo-text">
-      <h3>IEEE Innovation Challenge</h3>
-      <p>Spring 2026</p>
-    </div>
-  </div>
 
-  <nav class="nav-links">
-    <a href="#">About</a>
-    <a href="#">Events</a>
-    <a href="#">Contact</a>
-    <button class="chat-btn">Chat Now</button>
-  </nav>
+<div class="logo-area">
+<div class="logo-circle">IEEE</div>
+
+<div class="logo-text">
+<h3>IEEE Innovation Challenge</h3>
+<p>Spring 2026</p>
+</div>
+</div>
+
+<nav class="nav-links">
+<a href="#">About</a>
+<a href="#">Events</a>
+<a href="#">Contact</a>
+<button class="chat-btn">Chat Now</button>
+</nav>
+
 </header>
 
 <main class="main">
 
-  <div class="bot-wrap">
-    <div class="bot-glow"></div>
-    <div class="bot">
-      <div class="bot-antenna"></div>
-      <div class="bot-face">
-        <div class="eye left"></div>
-        <div class="eye right"></div>
-      </div>
-    </div>
-    <div class="ring"></div>
-  </div>
+<div class="bot-wrap" id="botWrap">
 
-  <h1>IEEE Workshop <span>Chatbot</span></h1>
-  <p class="subtitle">Ask me anything about the IEEE Innovation Challenge Spring 2026.</p>
+<div class="bot-glow"></div>
 
-  <section class="qa-card">
-    <div class="qa-row">
-      <div class="badge q-badge">Q</div>
-      <div id="questionText" class="question-text placeholder">
-        Your question will appear here.
-      </div>
-    </div>
+<div class="bot">
 
-    <div class="qa-row answer">
-      <div class="badge a-badge">A</div>
-      <div id="answerText" class="answer-text placeholder">
-        The answer will appear here.
-      </div>
-    </div>
-  </section>
+<div class="bot-antenna"></div>
+
+<div class="bot-face">
+<div class="eye left"></div>
+<div class="eye right"></div>
+<div class="mouth"></div>
+</div>
+
+</div>
+
+<div class="ring"></div>
+
+</div>
+
+<h1>IEEE Workshop <span>Chatbot</span></h1>
+
+<p class="subtitle">
+Ask me anything about the IEEE Innovation Challenge Spring 2026.
+</p>
+
+<section class="qa-card">
+
+<div class="qa-row">
+<div class="badge q-badge">Q</div>
+
+<div id="questionText" class="question-text placeholder">
+Your question will appear here.
+</div>
+</div>
+
+<div class="qa-row answer">
+
+<div class="badge a-badge">A</div>
+
+<div id="answerText" class="answer-text placeholder">
+The answer will appear here.
+</div>
+
+</div>
+
+</section>
 
 </main>
 
 <div class="input-bar">
-  <div class="input-wrap">
-    <span>💬</span>
-    <input id="msg" placeholder="Type your question here..." onkeydown="if(event.key==='Enter') sendQuestion()" />
-  </div>
-  <button class="ask-button" onclick="sendQuestion()">Ask</button>
+
+<div class="input-wrap">
+<span>💬</span>
+
+<input
+id="msg"
+placeholder="Type your question here..."
+onkeydown="if(event.key==='Enter') sendQuestion()"
+/>
+
+</div>
+
+<button class="ask-button" onclick="sendQuestion()">
+Ask
+</button>
+
 </div>
 
 <div class="footer">
-  © 2026 IEEE Department Innovation Challenge. All rights reserved.
+© 2026 IEEE Department Innovation Challenge
 </div>
 
 <script>
+
 const input = document.getElementById("msg");
 const questionText = document.getElementById("questionText");
 const answerText = document.getElementById("answerText");
+const botWrap = document.getElementById("botWrap");
 
-async function sendQuestion() {
-  const message = input.value.trim();
-  if (!message) return;
+/* BOT STATES */
 
-  questionText.classList.remove("placeholder");
-  answerText.classList.remove("placeholder");
+function setBotState(state){
 
-  questionText.innerText = message;
-  answerText.innerHTML = `
-    <div class="typing">
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
-  `;
+    botWrap.classList.remove(
+        "listening",
+        "thinking",
+        "answering"
+    );
 
-  input.value = "";
-
-  try {
-    const response = await fetch("/.netlify/functions/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ message })
-    });
-
-    const data = await response.json();
-
-    answerText.innerText = data.reply || "Sorry, I could not answer that.";
-  } catch (error) {
-    answerText.innerText = "Something went wrong. Please try again.";
-  }
+    if(state){
+        botWrap.classList.add(state);
+    }
 }
+
+/* USER TYPING */
+
+input.addEventListener("input",()=>{
+
+    if(input.value.trim()){
+        setBotState("listening");
+    }
+    else{
+        setBotState(null);
+    }
+
+});
+
+/* SEND QUESTION */
+
+async function sendQuestion(){
+
+    const message = input.value.trim();
+
+    if(!message) return;
+
+    questionText.classList.remove("placeholder");
+    answerText.classList.remove("placeholder");
+
+    questionText.innerText = message;
+
+    answerText.innerHTML = `
+        <div class="typing">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    `;
+
+    input.value = "";
+
+    setBotState("thinking");
+
+    try{
+
+        const response = await fetch("/.netlify/functions/chat",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                message
+            })
+        });
+
+        const data = await response.json();
+
+        answerText.innerText =
+            data.reply ||
+            "Sorry, I could not answer that.";
+
+        setBotState("answering");
+
+        setTimeout(()=>{
+            setBotState(null);
+        },1200);
+
+    }
+
+    catch(error){
+
+        answerText.innerText =
+            "Something went wrong. Please try again.";
+
+        setBotState(null);
+    }
+
+}
+
 </script>
 
 </body>
