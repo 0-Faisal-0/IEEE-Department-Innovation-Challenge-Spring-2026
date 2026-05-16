@@ -70,6 +70,8 @@ RESPONSE STYLE:
 - Keep tone friendly and student-friendly.
 - Use clean formatting.
 - Avoid excessive markdown symbols.
+- Absolute no use of Ai is allowed in the event
+
 `;
 
     const response =
