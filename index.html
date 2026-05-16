@@ -78,69 +78,148 @@ body {
 
 /* ── Bot ── */
 .bot-wrap {
-  width: 110px;
-  height: 108px;
+  width: 130px;
+  height: 130px;
   position: relative;
   margin-bottom: 24px;
 }
 
+/* Shadow on floor */
+.bot-shadow {
+  width: 70px; height: 10px;
+  background: rgba(0,0,0,0.08);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  animation: shadowPulse 3s ease-in-out infinite;
+}
+
 .bot-body {
   width: 82px;
-  height: 62px;
+  height: 68px;
   background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: 22px;
+  border: 2px solid var(--text);
+  border-radius: 24px;
   position: absolute;
-  left: 14px;
-  top: 28px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+  left: 24px;
+  top: 22px;
+  box-shadow: 4px 4px 0px var(--text);
   animation: floatBot 3s ease-in-out infinite;
 }
 
+/* Cheeks */
+.bot-body::before, .bot-body::after {
+  content: '';
+  width: 10px; height: 6px;
+  background: rgba(0,0,0,0.08);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 12px;
+}
+.bot-body::before { left: 8px; }
+.bot-body::after  { right: 8px; }
+
 .bot-antenna {
   width: 4px;
-  height: 16px;
-  background: var(--border);
-  border-radius: 3px;
+  height: 18px;
+  background: var(--text);
+  border-radius: 4px;
   position: absolute;
-  top: -16px;
+  top: -18px;
   left: 39px;
 }
 .bot-antenna::after {
   content: '';
-  width: 11px; height: 11px;
+  width: 12px; height: 12px;
   background: var(--text);
   border-radius: 50%;
   position: absolute;
-  top: -8px; left: -3.5px;
+  top: -9px; left: -4px;
+  animation: antennaBob 2s ease-in-out infinite;
 }
 
 .bot-face {
-  width: 52px; height: 30px;
+  width: 56px; height: 30px;
   background: var(--text);
   border-radius: 12px;
   position: absolute;
-  left: 15px; top: 16px;
+  left: 13px; top: 14px;
+  overflow: hidden;
 }
+
+/* Eyes — now with pupils */
 .eye {
-  width: 8px; height: 8px;
-  background: var(--bg);
+  width: 10px; height: 10px;
+  background: var(--surface);
   border-radius: 50%;
   position: absolute;
-  top: 11px;
-  transition: transform 0.15s;
+  top: 10px;
+  transition: transform 0.2s, height 0.15s;
 }
 .eye.left  { left: 11px; }
 .eye.right { right: 11px; }
 
-/* Bot states */
-.bot-wrap.thinking .bot-body {
-  animation: floatBot 3s ease-in-out infinite, thinkShake 0.4s ease-in-out infinite;
+/* Pupil inside each eye */
+.eye::after {
+  content: '';
+  width: 5px; height: 5px;
+  background: var(--text);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px; left: 2px;
+  transition: transform 0.2s;
 }
-.bot-wrap.thinking .eye { animation: eyeLook 0.5s ease-in-out infinite alternate; }
-.bot-wrap.answering .bot-body { animation: answerBounce 0.55s cubic-bezier(0.22,1,0.36,1); }
-.bot-wrap.answering .eye { transform: scaleY(0.45); }
-.bot-wrap.answering .bot-antenna::after { animation: antPulse 0.5s ease; }
+
+/* Mouth */
+.bot-mouth {
+  width: 20px; height: 4px;
+  background: var(--surface);
+  border-radius: 4px;
+  position: absolute;
+  bottom: 8px;
+  left: 50%; transform: translateX(-50%);
+  transition: all 0.3s ease;
+}
+
+/* ── Bot idle: gentle float ── */
+
+/* ── Bot thinking ── */
+.bot-wrap.thinking .bot-body {
+  animation: floatBot 3s ease-in-out infinite, thinkWobble 0.5s ease-in-out infinite;
+}
+.bot-wrap.thinking .eye {
+  animation: eyeScan 0.7s ease-in-out infinite alternate;
+  height: 7px;
+  top: 12px;
+}
+.bot-wrap.thinking .bot-antenna::after {
+  animation: antennaSpin 0.4s linear infinite;
+}
+.bot-wrap.thinking .bot-mouth {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  bottom: 6px;
+}
+
+/* ── Bot answering ── */
+.bot-wrap.answering .bot-body {
+  animation: happyBounce 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.bot-wrap.answering .eye {
+  animation: eyeHappy 0.4s ease forwards;
+  height: 4px;
+  top: 13px;
+  border-radius: 2px;
+}
+.bot-wrap.answering .bot-mouth {
+  width: 28px; height: 8px;
+  border-radius: 0 0 14px 14px;
+  bottom: 6px;
+}
+.bot-wrap.answering .bot-antenna::after {
+  animation: antennaPop 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
 
 /* ── Heading ── */
 h1 {
