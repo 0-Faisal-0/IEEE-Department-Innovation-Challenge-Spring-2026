@@ -1,0 +1,124 @@
+IEEE Department Innovation Challenge Spring 2026
+
+Venue:
+Bahria University E8 Islamabad
+
+Dates:
+May 19–20, 2026
+
+Registration Fee:
+Rs. 100 per participant
+
+Competitions:
+1. Programming Competition
+2. UI/UX Challenge
+3. Project Excellence League
+4. FYP-II Competition
+
+Certificates:
+Certificates will be provided to participants.
+
+Contact:
+Saad Malik
+
+Rules:
+Participants must bring student ID cards.
+
+FAQ:
+Q: Can beginners participate?
+A: Yes.
+
+Q: Is there team participation?
+A: Yes.
+
+Q: Will there be prizes?
+A: Yes.
+
+
+BU-IEEE STUDENT CHAPTER Department Innovation Challenge Spring 2026 Edition HAPPENING ON  19-20 MAY, 2026  DISCLAIMER This is a live document and serves as the official source of information for the Department Innovation Challenge  Spring 2026 Edition. All content included in this document  including but not limited to event details, rules and regulations, schedules, registration guidelines, fees, and judging criteria is subject to change at the discretion of the organizers. Participants are strongly advised to review this document regularly to remain informed about any updates, revisions, or announcements. It is the responsibility of all participants to stay up to date with the latest version of this document to avoid any confusion, inconvenience, or misunderstandings regarding event policies and procedures Contact information of our team for any queries: IEEE Student Branch Memeber: YASIR MOEEZ E-MAIL: moeezsindhu@gmail.com  OFFICIAL UNIVERSITY E-MAIL: 01-134242-137@student.bahria.edu.pk CONTACT NO: 03105225016  SAIF SULTAN E-MAIL:  saifsultan5417@gmail.com CONTACT NO: +92 3355050487    ABOUT Where Innovation Meets Excellence! We are thrilled to announce the Department Innovation Challenge Spring 2026 Edition, organized by the Department of Computer Science (CS, IT, AI) in collaboration with the IEEE Student Branch at Bahria University, E8 Islamabad. This flagship event is designed to provide students with a platform to showcase talent across CS, IT, and AI through competitive, hands-on challenges. Whether you are a designer, programmer, innovator, or researcher, this event offers an unparalleled opportunity to demonstrate your skills, learn from peers, and compete for prestigious recognition.                         Event Categories: Competition UI/UX Challenge Focus Area Design interfaces & branding Programming Competition Project Excellence League Showcase FYP-II Project Competition Solve coding challenges Showcase semester projects Present final-year innovations Date: 19th-20th May 2026 Venue: Bahria University, E8 Islamabad Campus Eligibility: Currently enrolled students of Bahria University  Guidelines Registration Guidelines: ● All participants must register online through the official registration link before the deadline. ● Registration fees (if any) will be communicated per event. ● There is a strict NO REFUND policy for all payments. ● Each team/individual must meet the minimum and maximum team size requirements specified for each event. ● Only registered participants will be allowed for the event. Rules and Regulations: ● All participants must abide by the rules of Bahria University Islamabad Campus and the Department of Computer Science. ● Failure to comply with the rules and regulations set by the organizers will result in immediate disqualification from all event activities. ● Any inappropriate, illegal, or immoral activity shall not be tolerated, and strict actions will be taken. ● Plagiarism, cheating, or use of unfair means will lead to immediate disqualification. ● The issue of violating rules will also be forwarded to the disciplinary committee of the participant's institution. ● Smoking, vaping, or any substance use is strictly prohibited inside the campus. ● Rules are subject to change at the discretion of the organizers without prior information to participants. ● Decisions made by event heads or judges in any competition will be considered final. Competition Guidelines: ● Participants must be present at their respective event venues on time and late arrival may result in disqualification. ● Participants must bring their Bahria University ID card (or other valid photo ID) for verification. ● All decisions by judges will be final and binding. UI/UX CHALLENGE Type:  Team (1-4) members)     Registration Fee  Coordinator  Total Prize Pool  Email  Contact  Winner Prize  Rs 100 / Participant Description: Shields + Certificates Shields + Certificates Runner Up Prize  Certificates A one-day UI/UX design competition where participants create a digital product solution within a limited time. A problem statement will be provided on the day of the event. Teams will focus on user-centered design, turning ideas into functional interfaces through research, wireframing, and prototyping. The challenge tests creativity, usability, and the ability to present a clear and effective design solution.  Rules: 1. All design work must be created during the competition. Pre-made designs, templates, or prior work are not allowed. 2. Participants must follow the given time limit strictly. Late submissions will not be accepted. 3. Use of UI kits, ready-made components, or copying existing designs is not permitted. 4. AI tools may be used only for research or content assistance, not for generating UI designs. 5. Participants must work within their teams only. Collaboration with other teams is not allowed. 6. Each team must submit all required deliverables before the deadline. 7. Submissions will be judged based on usability, design quality, creativity, and presentation. 8. Plagiarism or replication of existing products will result in disqualification. 9. In case of a tie, judges may use additional evaluation criteria or conduct a tie-breaking round. PROGRAMMING COMPETITION Type:  Coordinator  Team (1-3 members)  Yasir Moeez Email  Contact  moeezsindhu@gmail.c om Registration Fee  Rs 100 / Participant Description: Total Prize Pool  Shields + Certificates Winner Prize  Shields + Certificates  +92 3105225016 Runner Up Prize  Certificates The Programming Competition challenges participants to solve coding challenges within a limited time frame. Participants will solve algorithmic problems, debug code snippets, and optimize solutions. This event tests problem-solving skills, logical thinking, and programming proficiency in languages such as C++, Java, Python, or JavaScript. Rules: 1. One workstation (PC) will be assigned per team for the competition. 2. The competition duration  will be announced. 3. Scoring will be based on correctness, efficiency, and submission time. 4. In case of a tie, the participant/team with fewer incorrect submissions will be ranked higher. 5. Plagiarism or copying code from other participants will lead to immediate disqualification. 6. Judges' decisions will be final.  PROJECT EXCELLENCE LEAGUE SHOWCASE Type:  Coordinator  Email  Contact  Team (1-3 members)  Saif Sultan saifsultan5417@gmail .com +92 3355050487 Registration Fee  Total Prize Pool  Winner Prize  Runner Up Prize  Rs 100 / Participant Shields + Certificates Shields + Certificates Certificates Description: The Project Excellence League Showcase is a scheduled technical exhibition held at dedicated venues. Each team will be called according to a pre-defined schedule to present their project to a Panel of Judges. The event is designed to encourage students to demonstrate their original programming logic, technical implementation, and core skills developed during the semester.   Rules: 1. Projects must be original work completed by the team. 2. Plagiarism or use of others’ work will result in disqualification. 3. Each team will have 5-10 minutes total for presentation (pitch + live demo). 4. Teams must present at their assigned booth when called by the judge. 5. Teams must bring their own laptops and required hardware. 6. Projects must be fully functional and ready for live demonstration. 7. Judges must be able to view both code and output during evaluation. 8. Teams should be prepared to answer questions and defend their code. 9. Judges’ decisions are final.    FYP-II PROJECT COMPETITION Type:  Coordinator  Team (1-2 members)  Saif Sultan Email  Contact  saifsultan5417@gmail .com Registration Fee  Rs 100 / Participant Description: Total Prize Pool  Shields + Certificates Winner Prize  Shields + Certificates +92 3355050487 Runner Up Prize  Certificates The FYP-II Project Competition is a high-stakes showcase for graduating students. Held in dedicated venues according to schedule, teams must defend their final-year work/innovations before Judges. This competition validates the technical depth and professional implementation of the project. Rules: 1. Only FYP-II  projects are eligible. 2. Each team must submit their ppt before the event. 3. A live demo of a fully functional project is mandatory. 4. Incomplete or non-functional projects will be disqualified. 5. Each team must deliver a formal presentation with PPT and a working prototype. 6. Teams must be prepared to defend their methodology, architecture, and technical decisions during Q&A. 7. Teams must present at their assigned time and venue when called by the judges. 8. Teams must bring their own laptops, hardware, and required setup. 9. Projects will be evaluated by a panel of judges. 10. Judges’ decisions are final and binding. General Policies (Applicable to All Events) Code of Conduct: ● All participants must maintain professional behavior at all times. ● Harassment, discrimination, or disrespect toward judges, organizers, or other participants will result in immediate disqualification. ● Participants must follow all instructions given by event staff. Disqualification: The organizers reserve the right to disqualify any team or individual for: ● Violation of any rule mentioned in this document ● Plagiarism or cheating ● Unsportsmanlike behavior ● Tampering with event infrastructure Intellectual Property: All projects, designs, and code remain the intellectual property of the respective participants. However, by participating, you grant the Department of Computer Science and IEEE Student Branch permission to use images, videos, and descriptions for promotional purposes. Amendments: The organizers reserve the right to amend these rules and event details as necessary. Participants will be notified of any changes via email and the official WhatsApp channel.
+
+
+IEEE Logo
+ABOUT
+EVENTS
+CONTACT
+REGISTER
+
+Department Innovation Challenge
+The Future of Innovation Starts Here
+Join a dynamic gathering of CS students, problem solvers, and aspiring innovators as we push the boundaries of creativity and technical skill. The Department Innovation Challenge is designed to foster learning, collaboration, and competitive spirit within the computer science community.
+
+01
+Days
+23
+Hours
+35
+Minutes
+41
+Seconds
+About The Event
+Department Innovation Challenge is an immersive architectural experience in technology. We bring together diverse minds to compete, showcase, and collaborate on solutions that address global challenges. From senior project exhibitions to high-stakes programming contests, this challenge is the crucible where academic theory meets industrial precision.
+
+Main Events
+SELECT TRACK
+
+Project Excellence
+Showcase of groundbreaking engineering research and prototyping.
+
+arrow_forward
+
+FYP-II Competition
+The ultimate battleground for final year engineering students.
+
+arrow_forward
+
+UI/UX Challenge
+Designing the interfaces that will bridge humans and machines.
+
+arrow_forward
+
+Programming Contest
+High-speed algorithmic problem solving for elite coders.
+
+arrow_forward
+Register Now
+Select your category to begin the enrollment process.
+
+FYP-II Category
+Standard Professional Registration
+
+REGISTER
+UI/UX Challenge
+Design Track Registration
+
+REGISTER
+Programming
+Competitive Coding Entry
+
+REGISTER
+Project Exhibition
+Institutional Showcase Entry
+
+REGISTER
+Contact & Support
+Ambassador
+Neesa Sarwar Latif
+Primary contact for ambassadorial duties and outreach programs.
+
+01-134251-110@student.bahria.edu.pk
+Information Secretary
+Muhammad Saad Nawaz
+General inquiries regarding event information and schedules.
+
+01-134251-064@student.bahria.edu.pk
+Competition Information
+Saad Malik
+Specific queries related to competition rules and registration.
+
+01-134242-137@student.bahria.edu.pk
+Sponsorship Information
+Yasir Moeez
+Inquiries regarding corporate partnerships and sponsorship tiers.
+
+01-134242-137@student.bahria.edu.pk
+IEEE Logo
