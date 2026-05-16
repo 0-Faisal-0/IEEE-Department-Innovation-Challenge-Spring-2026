@@ -127,7 +127,7 @@ UNRELATED
       if (sessions[ip].unrelatedCount > 1) {
         return Response.json({
           reply:
-            "Sorry my friend, now I can answer only event-related questions in this chat session."
+            "Sorry my friend, I can answer only event-related questions in this chat session."
         });
       }
     }
